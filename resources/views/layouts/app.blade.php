@@ -52,14 +52,14 @@
                                 </li>
                             @endif
                         @else
-                            <li>
-                                <a href="{{route('fitnessplan')}}">Fitnessplan</a>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{route('fitnessplan')}}">Fitnessplan</a>
                             </li>
-                             <li>
-                                <a href="{{route('excercises')}}">Øvelser</a>
+                             <li class="nav-item">
+                                <a class="nav-link" href="{{route('excercises')}}">Øvelser</a>
                             </li>
-                             <li>
-                                <a href="{{route('tags')}}">Tags</a>
+                             <li class="nav-item">
+                                <a class="nav-link" href="{{route('tags')}}">Tags</a>
                             </li>
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
