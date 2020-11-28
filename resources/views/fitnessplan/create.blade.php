@@ -12,6 +12,11 @@
                         @csrf
                         <input name="name" type="text" />
                         <input name="workout_day" type="text" />
+                        @foreach($excercises as $excercise)
+                        <label for="excercises"> {{$excercise['name']}}
+                            <input type="checkbox" name="excercises[]" value="{{$excercise['id']}}"/>
+                        </label>
+                        @endforeach
                         <input type="submit" class="btn btn-primary"/>
                     </form>
 
