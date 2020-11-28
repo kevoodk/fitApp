@@ -11,6 +11,11 @@
 
                 @endforeach
                 <div class="card-body">
+                @foreach($excercises as $excercise)
+                    @foreach($excercise as $excer)
+                    <p>{{$excer['name']}}</p>
+                    @endforeach
+                @endforeach
                     <a href="{{url('/fitnessplan/create/')}}" class="btn btn-primary">Opret ny program</a>
 
                 </div>

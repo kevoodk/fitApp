@@ -91,7 +91,18 @@ class FitnessPlanController extends Controller
             return view('fitnessplan.create');
         }
 
-        return view('fitnessplan.show', ['fitness' => $fitnessPlan]);
+        $FitnessPlanExcercise = FitnessPlanExcercise::get()->where('workout_id', $id);
+        $excercises = [];
+
+        foreach ($FitnessPlanExcercise as $key) {
+            $excercise = Excercise::find($key);
+            $excercises[] = $excercise;
+        }
+
+        return view('fitnessplan.show', [
+            'fitness' => $fitnessPlan,
+            'excercises' => $excercises
+        ]);
     }
 
     /**
