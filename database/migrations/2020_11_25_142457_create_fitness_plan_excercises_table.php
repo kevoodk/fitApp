@@ -15,6 +15,8 @@ class CreateFitnessPlanExcercisesTable extends Migration
     {
         Schema::create('fitness_plan_excercises', function (Blueprint $table) {
             $table->id();
+            $table->integer('reps');
+            $table->integer('sets');
             $table->unsignedBigInteger('workout_id');
             $table->foreign('workout_id')->references('id')->on('fitness_plans');
             $table->unsignedBigInteger('excercise_id');

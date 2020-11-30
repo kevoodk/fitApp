@@ -67,12 +67,13 @@ class FitnessPlanController extends Controller
             $fitnessExcercises = new FitnessPlanExcercise([
                     'workout_id' => $fitnessPlan->id,
                     'excercise_id' => $excercise,
+                    'reps' => $request->input('reps'),
+                    'sets' => $request->input('sets'),
 
             ]);
 
             $fitnessExcercises->save();
         }
-
 
         return view('fitnessplan.create');
     }
