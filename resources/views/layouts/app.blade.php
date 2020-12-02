@@ -21,6 +21,7 @@
 </head>
 <body>
     <div id="app">
+        <div class="menu-ctn">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
@@ -83,10 +84,12 @@
                 </div>
             </div>
         </nav>
-
+        </div>
+        <div class="main-ctn">
         <main class="py-4">
             @yield('content')
         </main>
+    </div>
     </div>
 </body>
 </html>
