@@ -21,6 +21,7 @@
 </head>
 <body>
     <div id="app">
+        <div class="menu-ctn">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
@@ -45,13 +46,22 @@
                                     <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
                                 </li>
                             @endif
-                            
+
                             @if (Route::has('register'))
                                 <li class="nav-item">
                                     <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
                                 </li>
                             @endif
                         @else
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{route('fitnessplan')}}">Fitnessplan</a>
+                            </li>
+                             <li class="nav-item">
+                                <a class="nav-link" href="{{route('excercises')}}">Øvelser</a>
+                            </li>
+                             <li class="nav-item">
+                                <a class="nav-link" href="{{route('tags')}}">Tags</a>
+                            </li>
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->name }}
@@ -74,10 +84,12 @@
                 </div>
             </div>
         </nav>
-
+        </div>
+        <div class="main-ctn">
         <main class="py-4">
             @yield('content')
         </main>
+    </div>
     </div>
 </body>
 </html>
