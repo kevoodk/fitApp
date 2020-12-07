@@ -17,10 +17,10 @@ use App\Http\Controllers\TagsController;
 */
 
 Route::get('/', function () {
-    return view('index' );
+    return view('welcome' );
 });
 
-/*Auth::routes();
+Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
@@ -39,4 +39,4 @@ Route::middleware('isAdmin')->group(function() {
     Route::get('/tag', [TagsController::class, 'index'])->name('tags');
     Route::get('/tag/create', [TagsController::class, 'create'])->middleware('isAdmin');
     Route::post('/tag/store',  [TagsController::class, 'store']);
-});*/
+});
