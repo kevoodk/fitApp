@@ -9,7 +9,7 @@ class FitnessPlanExcercise extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['workout_id', 'excercise_id'];
+    protected $fillable = ['reps', 'sets', 'workout_id', 'excercise_id'];
 
     public function fitness() {
         return $this->belongsTo('App\Models\FitnessPlan', 'workout_id', 'id');

@@ -65,11 +65,10 @@ class FitnessPlanController extends Controller
 
         foreach ($request->input('excercises') as $excercise) {
             $fitnessExcercises = new FitnessPlanExcercise([
-                    'workout_id' => $fitnessPlan->id,
-                    'excercise_id' => $excercise,
                     'reps' => $request->input('reps'),
                     'sets' => $request->input('sets'),
-
+                    'workout_id' => $fitnessPlan->id,
+                    'excercise_id' => $excercise,
             ]);
 
             $fitnessExcercises->save();
