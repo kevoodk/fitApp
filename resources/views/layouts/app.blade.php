@@ -29,7 +29,6 @@
     </nav>
     <div class="dash-navbar-left nb-visible">
         <a class="navbar-brand" href="#">Fitapp admin panel</a>
-        <p class="nb-nav-title">Excercise</p>
         <ul class="nb-nav">
             <li>
                 <a class="collapsed" data-toggle="collapse" href="#excercise" aria-expanded="false" aria-controls="excercise">
@@ -52,9 +51,6 @@
                     </li>
                 </ul>
             </li>
-        </ul>
-        <p class="nb-nav-title">Workout</p>
-        <ul class="nb-nav">
             <li>
                 <a class="collapsed" data-toggle="collapse" href="#workout" aria-expanded="false" aria-controls="workout">
                     <span class="fa fa-calendar-check-o nb-link-icon"></span>
@@ -76,9 +72,6 @@
                     </li>
                 </ul>
             </li>
-        </ul>
-        <p class="nb-nav-title">Tags</p>
-        <ul class="nb-nav">
             <li>
                 <a class="collapsed" data-toggle="collapse" href="#tags" aria-expanded="false" aria-controls="tags">
                     <span class="fa fa-tag nb-link-icon"></span>

@@ -6,28 +6,45 @@
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header">{{ __('Dashboard') }}</div>
+                <form method="POST" action="/fitnessplan/store">
+                @csrf
 
-                <div class="card-body">
-                    <form method="POST" action="/fitnessplan/store">
-                        @csrf
-                        <input name="name" type="text" />
-                        <input name="workout_day" type="text" />
+                        <div class="form-row">
+                            <div class="col">
+                                <label for="fitName">Name of the plan</label>
+                                <input name="name" class="form-control" type="text" id="fitName" placeholder="Name of the fitness plan..."/>
+                            </div>
+                            <div class="col">
+                                <label for="fitDay">What day would you start the program</label>
+                                <input name="workout_day" id="fitDay" class="form-control" type="text" placeholder="Workout day.." />
+                            </div>
+                        </div>
+
                         @foreach($excercises as $excercise)
-                        <label for="excercises"> {{$excercise['name']}}
-                            <input type="checkbox" name="excercises[]" value="{{$excercise['id']}}"/>
-                        </label>
-                        <label for="reps">Antal reps</label>
-                            <select name="reps" id="reps">
-                            @for ($i = 1; $i < 21; $i++)
-                                <option value="{{$i}}">{{$i}}</option>
-                            @endfor
-                            </select>
-                        <label for="sets">Antal sets</label>
-                            <select name="sets" id="sets">
-                            @for ($i = 1; $i < 21; $i++)
-                                <option value="{{$i}}">{{$i}}</option>
-                            @endfor
-                            </select>
+                        <div class="form-row">
+                            <div class="col">
+                                <label>{{$excercise['name']}}</label>
+                                <input type="checkbox" class="form-control" name="excercises[]" value="{{$excercise['id']}}"/>
+                            </div>
+                            <div class="col">
+                                <label>Antal reps</label>
+                                <select class="form-control" name="reps" id="reps">
+                                    <option disabled selected value> -- select an option -- </option>
+                                @for ($i = 1; $i < 21; $i++)
+                                    <option value="{{$i}}">{{$i}}</option>
+                                @endfor
+                                </select>
+                            </div>
+                            <div class="col">
+                                <label for="sets">Antal sets</label>
+                                <select class="form-control" name="sets" id="sets">
+                                    <option disabled selected value> -- select an option -- </option>
+                                @for ($i = 1; $i < 21; $i++)
+                                    <option value="{{$i}}">{{$i}}</option>
+                                @endfor
+                                </select>
+                            </div>
+                        </div>
                         @endforeach
                         <input type="submit" class="btn btn-primary"/>
                     </form>
