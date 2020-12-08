@@ -46,7 +46,7 @@ class FitnessPlanController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'name' => 'required|string|max:255',
-            'workout_day' => 'required|string|max:255',
+            'workout_day' => 'required|array|max:255',
         ]);
 
         if ($validator->fails()) {
@@ -54,11 +54,12 @@ class FitnessPlanController extends Controller
         }
 
         $userId = Auth::id();
-
+        $workoutDays =implode(',', $request->input('workout_day'));
         $fitnessPlan = new fitnessplan([
             'name' => $request->input('name'),
-            'workout_day' => $request->input('workout_day')
+            'workout_day' => $workoutDays,
         ]);
+
 
         $fitnessPlan->user_id = $userId;
         $fitnessPlan->save();

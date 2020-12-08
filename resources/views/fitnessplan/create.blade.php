@@ -16,7 +16,16 @@
                             </div>
                             <div class="col">
                                 <label for="fitDay">What day would you start the program</label>
-                                <input name="workout_day" id="fitDay" class="form-control" type="text" placeholder="Workout day.." />
+                               <select class="form-control" multiple name="workout_day[]" data-max-options="2">
+                                    <option value="monday">Monday</option>
+                                    <option value="tuesday">Tuesday</option>
+                                    <option value="wednesday">Wednesday</option>
+                                    <option value="thursday">Thursdag</option>
+                                    <option value="friday">Friday</option>
+                                    <option value="saturday">Saturday</option>
+                                    <option value="sunday">Sunday</option>
+                                </select>
+                                <!-- <input name="workout_day" id="fitDay" class="form-control" type="text" placeholder="Workout day.." /> -->
                             </div>
                         </div>
 
