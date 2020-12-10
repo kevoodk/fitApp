@@ -28,7 +28,10 @@ Route::middleware('auth')->group(function() {
     Route::get('/fitnessplan', [FitnessPlanController::class, 'index'])->name('fitnessplan');
     Route::get('/fitnessplan/create', [FitnessPlanController::class, 'create'])->name('add-fitnessplan');
     Route::post('/fitnessplan/store', [FitnessPlanController::class, 'store']);
+    Route::get('/fitnessplan/edit/{id}', [FitnessPlanController::class, 'edit']);
+    Route::post('/fitnessplan/update/{id}', [FitnessPlanController::class, 'update']);
     Route::get('/fitnessplan/{id}', [FitnessPlanController::class, 'show']);
+    Route::post('/fitnessplan/delete/{id}', [FitnessPlanController::class, 'destroy']);
 });
 
 Route::middleware('isAdmin')->group(function() {
