@@ -19,7 +19,7 @@
                     @foreach($fitness as $plan)
                         <tr>
                             <td><a href="{{url('/fitnessplan/'. $plan['id'])}}">{{$plan['name']}}</a></td>
-                            <td></td>
+                            <td>{{$plan['workout_day']}}</td>
                             <td>  <a href="{{url('/fitnessplan/edit/'. $plan['id'])}}">
                             <i class="fa fa-edit  fa-lg"></i>
                             </a></td>

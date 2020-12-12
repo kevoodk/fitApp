@@ -75,7 +75,7 @@ class FitnessPlanController extends Controller
             $fitnessExcercises->save();
         }
 
-        return view('fitnessplan.create');
+        return redirect()->route('add-fitnessplan');
     }
 
     /**
