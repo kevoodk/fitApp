@@ -21,7 +21,7 @@ class FitnessPlanController extends Controller
 
         $fitnessPlan = fitnessplan::get()->where('user_id', Auth::id());
 
-        return view('fitnessplan.index', ['kevoos' => $fitnessPlan]);
+        return view('fitnessplan.index', ['fitness' => $fitnessPlan]);
     }
 
     /**
@@ -46,7 +46,7 @@ class FitnessPlanController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'name' => 'required|string|max:255',
-            'workout_day' => 'required|string|max:255',
+            'workout_day' => 'required|array|max:255',
         ]);
 
         if ($validator->fails()) {
@@ -54,28 +54,28 @@ class FitnessPlanController extends Controller
         }
 
         $userId = Auth::id();
-
+        $workoutDays =implode(',', $request->input('workout_day'));
         $fitnessPlan = new fitnessplan([
             'name' => $request->input('name'),
-            'workout_day' => $request->input('workout_day')
+            'workout_day' => $workoutDays,
         ]);
+
 
         $fitnessPlan->user_id = $userId;
         $fitnessPlan->save();
 
         foreach ($request->input('excercises') as $excercise) {
             $fitnessExcercises = new FitnessPlanExcercise([
-                    'workout_id' => $fitnessPlan->id,
-                    'excercise_id' => $excercise,
                     'reps' => $request->input('reps'),
                     'sets' => $request->input('sets'),
-
+                    'workout_id' => $fitnessPlan->id,
+                    'excercise_id' => $excercise,
             ]);
 
             $fitnessExcercises->save();
         }
 
-        return view('fitnessplan.create');
+        return redirect()->route('add-fitnessplan');
     }
 
     /**
@@ -112,9 +112,12 @@ class FitnessPlanController extends Controller
      * @param  \App\Models\FitnessPlan  $fitnessPlan
      * @return \Illuminate\Http\Response
      */
-    public function edit(FitnessPlan $fitnessPlan)
+    public function edit($id)
     {
-        //
+        $fitnessPlan = fitnessplan::find($id);
+        $excercises = Excercise::all();
+
+        return view('fitnessplan.edit', ['fitness' => $fitnessPlan, 'excercises' => $excercises]);
     }
 
     /**
@@ -124,9 +127,21 @@ class FitnessPlanController extends Controller
      * @param  \App\Models\FitnessPlan  $fitnessPlan
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, FitnessPlan $fitnessPlan)
+    public function update(Request $request, $id)
     {
-        //
+        $fitnessPlan =  fitnessplan::find($id);
+        $workoutDays =implode(',', $request->input('workout_day'));
+
+        $fitnessPlan->update([
+            'name' => $request->input('name'),
+            'workout_day' => $workoutDays
+        ]);
+
+        $fitnessExcercises = FitnessPlanExcercise::get()->where('workout_id', $id);
+
+
+        return redirect()->route('fitnessplan')
+            ->with('success', 'Fitnessplan has been updated successfully');
     }
 
     /**
@@ -135,8 +150,12 @@ class FitnessPlanController extends Controller
      * @param  \App\Models\FitnessPlan  $fitnessPlan
      * @return \Illuminate\Http\Response
      */
-    public function destroy(FitnessPlan $fitnessPlan)
+    public function destroy($id)
     {
-        //
+        $fitnessPlan = fitnessplan::find($id);
+        $fitnessPlan->delete();
+
+        return redirect()->route('fitnessplan')
+            ->with('success', 'Fitnessplan has been deleted successfully');
     }
 }

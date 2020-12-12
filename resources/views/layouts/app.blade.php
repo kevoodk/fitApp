@@ -11,85 +11,98 @@
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
-
+    <script src="{{ asset('js/custom.js') }}" defer></script>
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/custom.css') }}" rel="stylesheet">
 </head>
 <body>
-    <div id="app">
-        <div class="menu-ctn">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
-            <div class="container">
-                <a class="navbar-brand" href="{{ url('/') }}">
-                    {{ config('app.name', 'Laravel') }}
+    <nav class="navbar navbar-light bg-faded navbar-static-top dash-navbar-top nb-visible">
+        <button class="nb-btn-toggle">
+            <span class="fa fa-bars"></span>
+        </button>
+    </nav>
+    <div class="dash-navbar-left nb-visible">
+        <a class="navbar-brand" href="#">Fitapp admin panel</a>
+        <ul class="nb-nav">
+            <li>
+                <a class="collapsed" data-toggle="collapse" href="#excercise" aria-expanded="false" aria-controls="excercise">
+                    <span class="fa fa-child nb-link-icon"></span>
+                    <span class="nb-link-text">Manage Excercises</span>
+                    <span class="fa fa-angle-up nb-btn-sub-collapse"></span>
                 </a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
+                <ul class="nb-sub-one collapse" id="excercise">
+                    <li>
+                      <a href="{{route('excercises')}}">
+                        <span class="fa fa-slack nb-link-icon"></span>
+                        <span class="nb-link-text">All Excercise</span>
+                      </a>
+                    </li>
+                     <li>
+                      <a href="{{route('add-excercise')}}">
+                        <span class="fa fa-slack nb-link-icon"></span>
+                        <span class="nb-link-text">Add Excercise</span>
+                      </a>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <a class="collapsed" data-toggle="collapse" href="#workout" aria-expanded="false" aria-controls="workout">
+                    <span class="fa fa-calendar-check-o nb-link-icon"></span>
+                    <span class="nb-link-text">Manage workouts</span>
+                    <span class="fa fa-angle-up nb-btn-sub-collapse"></span>
+                </a>
+                <ul class="nb-sub-one collapse" id="workout">
+                    <li>
+                      <a href="{{route('fitnessplan')}}">
+                        <span class="fa fa-slack nb-link-icon"></span>
+                        <span class="nb-link-text">All workouts</span>
+                      </a>
+                    </li>
+                     <li>
+                      <a href="{{route('add-fitnessplan')}}">
+                        <span class="fa fa-slack nb-link-icon"></span>
+                        <span class="nb-link-text">Add workout</span>
+                      </a>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <a class="collapsed" data-toggle="collapse" href="#tags" aria-expanded="false" aria-controls="tags">
+                    <span class="fa fa-tag nb-link-icon"></span>
+                    <span class="nb-link-text">Manage tags</span>
+                    <span class="fa fa-angle-up nb-btn-sub-collapse"></span>
+                </a>
+                <ul class="nb-sub-one collapse" id="tags">
+                    <li>
+                      <a href="{{Route('tags')}}">
+                        <span class="fa fa-slack nb-link-icon"></span>
+                        <span class="nb-link-text">All tags</span>
+                      </a>
+                    </li>
+                     <li>
+                      <a href="{{Route('add-tag')}}">
+                        <span class="fa fa-slack nb-link-icon"></span>
+                        <span class="nb-link-text">Add tag</span>
+                      </a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </div> <!-- /.dash-navbar-left -->
 
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <!-- Left Side Of Navbar -->
-                    <ul class="navbar-nav mr-auto">
 
-                    </ul>
-
-                    <!-- Right Side Of Navbar -->
-                    <ul class="navbar-nav ml-auto">
-                        <!-- Authentication Links -->
-                        @guest
-                            @if (Route::has('login'))
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
-                                </li>
-                            @endif
-
-                            @if (Route::has('register'))
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
-                                </li>
-                            @endif
-                        @else
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{route('fitnessplan')}}">Fitnessplan</a>
-                            </li>
-                             <li class="nav-item">
-                                <a class="nav-link" href="{{route('excercises')}}">Øvelser</a>
-                            </li>
-                             <li class="nav-item">
-                                <a class="nav-link" href="{{route('tags')}}">Tags</a>
-                            </li>
-                            <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    {{ Auth::user()->name }}
-                                </a>
-
-                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ route('logout') }}"
-                                       onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
-                                    </a>
-
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                        @csrf
-                                    </form>
-                                </div>
-                            </li>
-                        @endguest
-                    </ul>
-                </div>
-            </div>
-        </nav>
-        </div>
-        <div class="main-ctn">
-        <main class="py-4">
+    <div class="content-wrap nb-visible" data-effect="nb-push">
+      <div class="container-fluid">
+        <div class="row">
             @yield('content')
-        </main>
-    </div>
-    </div>
-</body>
+         <!-- End of your content -->
+        </div>
+      </div>
+    </div> <!-- /.content-wrap --></body>
 </html>

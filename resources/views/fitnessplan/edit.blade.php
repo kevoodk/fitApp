@@ -6,17 +6,17 @@
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header">{{ __('Dashboard') }}</div>
-                <form method="POST" action="/fitnessplan/store">
+                <form method="POST" action="/fitnessplan/update/{{$fitness['id']}}">
                 @csrf
 
                         <div class="form-row">
                             <div class="col">
                                 <label for="fitName">Name of the plan</label>
-                                <input name="name" class="form-control" type="text" id="fitName" placeholder="Name of the fitness plan..."/>
+                                <input name="name" class="form-control" type="text" id="fitName" value="{{$fitness['name']}}"placeholder="Name of the fitness plan..."/>
                             </div>
                             <div class="col">
                                 <label for="fitDay">What day would you start the program</label>
-                               <select class="form-control" multiple name="workout_day[]" data-max-options="2">
+                               <select value="{{$fitness['workout_day']}}" class="form-control" multiple name="workout_day[]" data-max-options="2">
                                     <option value="monday">Monday</option>
                                     <option value="tuesday">Tuesday</option>
                                     <option value="wednesday">Wednesday</option>
@@ -25,12 +25,11 @@
                                     <option value="saturday">Saturday</option>
                                     <option value="sunday">Sunday</option>
                                 </select>
-                                <!-- <input name="workout_day" id="fitDay" class="form-control" type="text" placeholder="Workout day.." /> -->
                             </div>
                         </div>
 
-                        @foreach($excercises as $excercise)
-                        <div class="form-row">
+                            @foreach($excercises as $excercise)
+                                 <div class="form-row">
                             <div class="col">
                                 <label>{{$excercise['name']}}</label>
                                 <input type="checkbox" class="form-control" name="excercises[]" value="{{$excercise['id']}}"/>
@@ -54,8 +53,11 @@
                                 </select>
                             </div>
                         </div>
-                        @endforeach
-                        <input type="submit" class="btn btn-primary"/>
+                            @endforeach
+                        </div>
+
+
+                        <input type="submit" class="btn btn-primary form-control" value="Update"/>
                     </form>
 
                 </div>
